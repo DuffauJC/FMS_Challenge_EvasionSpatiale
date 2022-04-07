@@ -60,7 +60,9 @@ public class AudioPlayer02 extends JFrame {
 //test *****
 	public void playAudio() {
 		try {
-			URL url = new URL("https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/air_raid.wav");
+			//https://www.thesoundarchive.com/starwars/imperial_march.wav
+			//URL url = new URL("https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/air_raid.wav");
+			URL url = new URL("https://www.thesoundarchive.com/starwars/imperial_march.wav");
 			audioInputStream = AudioSystem.getAudioInputStream(url);
 			audioFormat = audioInputStream.getFormat();
 			Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
@@ -73,17 +75,8 @@ public class AudioPlayer02 extends JFrame {
 	}
 
 	public void stopAudio() {
-		try {
-			URL url = new URL("https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/air_raid.wav");
-			audioInputStream = AudioSystem.getAudioInputStream(url);
-			audioFormat = audioInputStream.getFormat();
-			Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-			sourceDataLine = (SourceDataLine) AudioSystem.getLine(info);
-
-			new PlayThread().start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
+	
 	}
 	class PlayThread extends Thread {
 		byte tempBuffer[] = new byte[10000];
