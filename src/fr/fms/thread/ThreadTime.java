@@ -7,34 +7,42 @@ import java.util.Date;
 import fr.fms.graphic.GraphicSpace;
 
 public class ThreadTime {
+	
+	
 
 	public static void main(String[] args) {
-
-		DateFormat df = new SimpleDateFormat("HH:mm:ss");
-		Thread thread = new Thread(new MonRunnable(5000, df)); //
-
-		//System.out.println(df.format(new Date()));
+		long time = (int) ((Math.random()*100000) + 1);
+		Thread thread = new Thread(new MonRunnable(1000)); //
 
 		thread.start();
+		
+		try {
+			thread.join(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 
 	public static class MonRunnable implements Runnable {
 
 		private long delai;
-		private DateFormat df; //
 
-		public MonRunnable(long delai, DateFormat df) { //
+		public MonRunnable(long delai) { //
 			this.delai = delai;
-			this.df = df; //
 		}
 
 		@Override
 		public void run() {
 			while (true) {
 				try {
-					
-					new GraphicSpace();
+					new GraphicSpace(); //
 					Thread.sleep(delai);
+					//GraphicSpace graphicSpace = new GraphicSpace();
+					//Thread.interrupt();
+					//graphicSpace.dispose();
+					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
