@@ -8,7 +8,7 @@ public class ThreadTime {
 	public static void main(String[] args) {
 
 		long time = (int) ((Math.random()*100000) + 1);
-		Thread thread = new Thread(new MonRunnable(time)); //
+		Thread thread = new Thread(new MonRunnable(15000)); //
 
 		thread.start();
 		
@@ -36,10 +36,6 @@ public class ThreadTime {
 					audioplay.playAudio();
 					Thread.sleep(delai);
 					g.setVisible(false);
-					
-					//GraphicSpace graphicSpace = new GraphicSpace();
-					//Thread.interrupt();
-					//graphicSpace.dispose();
 					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
