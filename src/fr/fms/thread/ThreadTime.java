@@ -1,5 +1,6 @@
 package fr.fms.thread;
 
+import fr.fms.graphic.AudioPlayer02;
 import fr.fms.graphic.GraphicSpace;
 
 public class ThreadTime {
@@ -7,7 +8,7 @@ public class ThreadTime {
 	public static void main(String[] args) {
 
 		long time = (int) ((Math.random()*100000) + 1);
-		Thread thread = new Thread(new MonRunnable(5000)); //
+		Thread thread = new Thread(new MonRunnable(time)); //
 
 		thread.start();
 		
@@ -30,7 +31,9 @@ public class ThreadTime {
 		public void run() {
 			while (true) {
 				try {
-					GraphicSpace g = new GraphicSpace(); //				
+					AudioPlayer02 audioplay=	new AudioPlayer02();
+					GraphicSpace g = new GraphicSpace(); //	
+					audioplay.playAudio();
 					Thread.sleep(delai);
 					g.setVisible(false);
 					

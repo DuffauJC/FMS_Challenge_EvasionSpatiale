@@ -1,5 +1,7 @@
+package fr.fms.graphic;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.net.URL;
 
@@ -53,10 +55,10 @@ public class AudioPlayer02 extends JFrame {
 		setTitle("Copyright 2003, R.G.Baldwin");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(250, 70);
-		setVisible(true);
+		setVisible(false);
 	}
-
-	private void playAudio() {
+//test *****
+	public void playAudio() {
 		try {
 			URL url = new URL("https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/air_raid.wav");
 			audioInputStream = AudioSystem.getAudioInputStream(url);
@@ -64,13 +66,25 @@ public class AudioPlayer02 extends JFrame {
 			Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
 			sourceDataLine = (SourceDataLine) AudioSystem.getLine(info);
 
-			System.out.println(audioFormat);
 			new PlayThread().start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	public void stopAudio() {
+		try {
+			URL url = new URL("https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/air_raid.wav");
+			audioInputStream = AudioSystem.getAudioInputStream(url);
+			audioFormat = audioInputStream.getFormat();
+			Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+			sourceDataLine = (SourceDataLine) AudioSystem.getLine(info);
+
+			new PlayThread().start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	class PlayThread extends Thread {
 		byte tempBuffer[] = new byte[10000];
 

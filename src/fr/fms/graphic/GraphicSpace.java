@@ -55,6 +55,6 @@ public class GraphicSpace extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new GraphicSpace();
+	
 	}
 }
