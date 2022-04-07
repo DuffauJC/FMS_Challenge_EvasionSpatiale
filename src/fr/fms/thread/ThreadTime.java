@@ -7,7 +7,7 @@ public class ThreadTime {
 	public static void main(String[] args) {
 
 		long time = (int) ((Math.random()*100000) + 1);
-		Thread thread = new Thread(new MonRunnable(time)); //
+		Thread thread = new Thread(new MonRunnable(5000)); //
 
 		thread.start();
 		
