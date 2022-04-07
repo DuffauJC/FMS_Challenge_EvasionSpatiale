@@ -32,7 +32,6 @@ public class GraphicSpace extends JFrame {
 		//g.dispose();
 
 		 try {
-	            //setDefaultCloseOperation(EXIT_ON_CLOSE);
 	            setDefaultCloseOperation(HIDE_ON_CLOSE);
 	            contentPane = (JPanel) getContentPane();
 	           

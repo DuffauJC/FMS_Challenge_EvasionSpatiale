@@ -10,7 +10,12 @@ public class ThreadTime {
 		Thread thread = new Thread(new MonRunnable(time)); //
 
 		thread.start();
-	
+		
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static class MonRunnable implements Runnable {
