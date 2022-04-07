@@ -40,7 +40,7 @@ public class GraphicSpace extends JFrame {
 	         
 	            contentPane.add(headerLabel, java.awt.BorderLayout.NORTH);
 	            // add the image label
-	            ImageIcon ii = new ImageIcon( "dark_vador.gif");
+	            ImageIcon ii = new ImageIcon( "porg-chewbacca.gif");
 	                   
 	            imageLabel.setIcon(ii);
 	            contentPane.add(imageLabel, java.awt.BorderLayout.CENTER);
