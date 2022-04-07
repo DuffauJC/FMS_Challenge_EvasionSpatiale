@@ -1,28 +1,16 @@
 package fr.fms.thread;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import fr.fms.graphic.GraphicSpace;
 
 public class ThreadTime {
-	
-	
 
 	public static void main(String[] args) {
+
 		long time = (int) ((Math.random()*100000) + 1);
-		Thread thread = new Thread(new MonRunnable(1000)); //
+		Thread thread = new Thread(new MonRunnable(time)); //
 
 		thread.start();
-		
-		try {
-			thread.join(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
+	
 	}
 
 	public static class MonRunnable implements Runnable {
@@ -37,8 +25,10 @@ public class ThreadTime {
 		public void run() {
 			while (true) {
 				try {
-					new GraphicSpace(); //
+					GraphicSpace g = new GraphicSpace(); //				
 					Thread.sleep(delai);
+					g.setVisible(false);
+					
 					//GraphicSpace graphicSpace = new GraphicSpace();
 					//Thread.interrupt();
 					//graphicSpace.dispose();
