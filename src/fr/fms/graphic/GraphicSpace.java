@@ -55,15 +55,7 @@ public class GraphicSpace extends JFrame {
 	             (SourceDataLine)AudioSystem.getLine(
 	                                   dataLineInfo);
 
-	      //Create a thread to play back the data and
-	      // start it running.  It will run until the
-	      // end of file, or the Stop button is
-	      // clicked, whichever occurs first.
-	      // Because of the data buffers involved,
-	      // there will normally be a delay between
-	      // the click on the Stop button and the
-	      // actual termination of playback.
-    //  new PlayThread().start();
+	
 	    }catch (Exception e) {
 	      e.printStackTrace();
 	      System.exit(0);

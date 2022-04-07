@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioFormat.Encoding;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -52,8 +51,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import fr.fms.thread.ThreadTime.MonRunnable;
-
 public class AudioPlayer02 extends JFrame {
 
 	/**
@@ -66,29 +63,20 @@ public class AudioPlayer02 extends JFrame {
 	SourceDataLine sourceDataLine;
 	boolean stopPlayback = false;
 	final JButton stopBtn = new JButton("Stop");
-	final JButton playBtn = new JButton("Play");
+	//final JButton playBtn = new JButton("Play");
 	final JTextField textField = new JTextField("air_raid.wav");
 
 	public static void main(String args[]) {
 		new AudioPlayer02();
+		System.out.println("end");
 	}// end main
 		// -------------------------------------------//
 
 	public AudioPlayer02() {// constructor
 
-		stopBtn.setEnabled(false);
-		playBtn.setEnabled(true);
-
-		// Instantiate and register action listeners
-		// on the Play and Stop buttons.
-		playBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				stopBtn.setEnabled(true);
-				playBtn.setEnabled(false);
-				playAudio();// Play the file
-			}// end actionPerformed
-		}// end ActionListener
-		);// end addActionListener()
+		stopBtn.setEnabled(true);
+	
+		playAudio();// Play the file
 
 		stopBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,7 +86,7 @@ public class AudioPlayer02 extends JFrame {
 		}// end ActionListener
 		);// end addActionListener()
 
-		getContentPane().add(playBtn, "West");
+		//getContentPane().add(playBtn, "West");
 		getContentPane().add(stopBtn, "East");
 		getContentPane().add(textField, "North");
 
@@ -106,13 +94,14 @@ public class AudioPlayer02 extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(350, 250);
 		setVisible(true);
+		//setDefaultCloseOperation(HIDE_ON_CLOSE);
 	}// end constructor
 		// -------------------------------------------//
 
 	// This method plays back audio data from an
 	// audio file whose name is specified in the
 	// text field.
-	private void playAudio() {
+	public void playAudio() {
 		try {
 			File soundFile = new File(textField.getText());
 			audioInputStream = AudioSystem.getAudioInputStream(soundFile);
@@ -122,16 +111,9 @@ public class AudioPlayer02 extends JFrame {
 			DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
 
 			sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-
-			// Create a thread to play back the data and
-			// start it running. It will run until the
-			// end of file, or the Stop button is
-			// clicked, whichever occurs first.
-			// Because of the data buffers involved,
-			// there will normally be a delay between
-			// the click on the Stop button and the
-			// actual termination of playback.
+			
 			new PlayThread().start();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -170,7 +152,7 @@ public class AudioPlayer02 extends JFrame {
 
 				// Prepare to playback another file
 				stopBtn.setEnabled(false);
-				playBtn.setEnabled(true);
+				//playBtn.setEnabled(true);
 				stopPlayback = false;
 			} catch (Exception e) {
 				e.printStackTrace();
