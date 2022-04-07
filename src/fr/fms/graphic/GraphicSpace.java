@@ -1,17 +1,30 @@
 package fr.fms.graphic;
 
 import java.awt.Graphics;
-import java.awt.HeadlessException;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.SourceDataLine;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 
 public class GraphicSpace extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
 
-
+	  AudioFormat audioFormat;
+	  AudioInputStream audioInputStream;
+	  SourceDataLine sourceDataLine;
+	  boolean stopPlayback = false;
+	  final JButton stopBtn = new JButton("Stop");
+	  final JButton playBtn = new JButton("Play");
+	  final JTextField textField =
+	                       new JTextField("sound3.au");
 
 
 	public GraphicSpace() {
@@ -19,12 +32,49 @@ public class GraphicSpace extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(350, 250);
 		setLocationRelativeTo(null);
+		playAudio();
 		setVisible(true);
+		
 	}
+
+	private void playAudio() {
+	    try{
+	      File soundFile =
+	                   new File(textField.getText());
+	      audioInputStream = AudioSystem.
+	                  getAudioInputStream(soundFile);
+	      audioFormat = audioInputStream.getFormat();
+	      System.out.println(audioFormat);
+
+	      DataLine.Info dataLineInfo =
+	                          new DataLine.Info(
+	                            SourceDataLine.class,
+	                                    audioFormat);
+
+	      sourceDataLine =
+	             (SourceDataLine)AudioSystem.getLine(
+	                                   dataLineInfo);
+
+	      //Create a thread to play back the data and
+	      // start it running.  It will run until the
+	      // end of file, or the Stop button is
+	      // clicked, whichever occurs first.
+	      // Because of the data buffers involved,
+	      // there will normally be a delay between
+	      // the click on the Stop button and the
+	      // actual termination of playback.
+    //  new PlayThread().start();
+	    }catch (Exception e) {
+	      e.printStackTrace();
+	      System.exit(0);
+	    }//end catch
+	  }//end playAudio
+
 
 	@Override
 	public void paint(Graphics g) { // le rep�re x,y commence en haut � gauche (0,0)
 		super.paint(g);
+		playAudio();
 
 
 		g.fillOval(50, 50, 35, 35);	// x , y , largeur , hauteur (diam�tre)

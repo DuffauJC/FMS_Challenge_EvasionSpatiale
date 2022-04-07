@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import fr.fms.graphic.AudioPlayer02;
 import fr.fms.graphic.GraphicSpace;
 
 public class ThreadTime {
@@ -12,7 +13,7 @@ public class ThreadTime {
 	public static void main(String[] args) {
 
 		DateFormat df = new SimpleDateFormat("HH:mm:ss");
-		Thread thread = new Thread(new MonRunnable(5000, df)); //
+		Thread thread = new Thread(new MonRunnable(10000, df)); //
 
 		//System.out.println(df.format(new Date()));
 
@@ -34,7 +35,7 @@ public class ThreadTime {
 			while (true) {
 				try {
 					
-					new GraphicSpace();
+					new AudioPlayer02();
 					Thread.sleep(delai);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
