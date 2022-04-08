@@ -1,7 +1,6 @@
 package fr.fms.graphic;
 
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
 import java.net.URL;
 
@@ -16,7 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 public class AudioPlayer02 extends JFrame {
-
+	private static final long serialVersionUID = 1L;
+	
 	AudioFormat audioFormat;
 	AudioInputStream audioInputStream;
 	SourceDataLine sourceDataLine;

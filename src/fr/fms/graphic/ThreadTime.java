@@ -1,13 +1,10 @@
-package fr.fms.thread;
-
-import fr.fms.graphic.AudioPlayer02;
-import fr.fms.graphic.GraphicSpace;
+package fr.fms.graphic;
 
 public class ThreadTime {
 
 	public static void main(String[] args) {
 
-		long time = (int) ((Math.random()*100000) + 1);
+		//long time = (int) ((Math.random()*100000) + 1);
 		Thread thread = new Thread(new MonRunnable(15000)); //
 
 		thread.start();
