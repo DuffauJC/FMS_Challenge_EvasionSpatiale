@@ -63,7 +63,10 @@ public class AudioPlayer02 extends JFrame {
 		try {
 			//https://www.thesoundarchive.com/starwars/imperial_march.wav
 			//URL url = new URL("https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/air_raid.wav");
-			URL url = new URL("https://www.thesoundarchive.com/starwars/chewy_roar.wav");
+			//URL url = new URL("https://www.thesoundarchive.com/starwars/chewy_roar.wav");
+			
+			// son du media local
+			URL url =AudioPlayer02.class.getResource("/media/chewby_roar.wav");
 			audioInputStream = AudioSystem.getAudioInputStream(url);
 			audioFormat = audioInputStream.getFormat();
 			Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
